@@ -1,6 +1,8 @@
 def main():
-    top = open("templates/top.html").read() 
-    bottom = open("templates/bottom.html").read()
+    # top = open("templates/top.html").read() 
+    # bottom = open("templates/bottom.html").read()
+    template = open("templates/base.html").read()
+
     pages = [
         {
             "filename" : "content/index.html",
@@ -27,7 +29,7 @@ def main():
 
     for page in pages:
         middle_content = open(page["filename"]).read() #read from pages list
-        combined_html = top + middle_content + bottom
-        open(page["output"], "w+").write(combined_html) #writes concatenated content to new file
+        finished_page = template.replace("{{placeholder}}",middle_content) + "test"
+        open(page["output"], "w+").write(finished_page) #writes concatenated content to new file
 
 main()
