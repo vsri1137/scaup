@@ -33,6 +33,13 @@ def content_extractor():  # this function iterates through pages list and extrac
         finished_page = template.replace("{{placeholder}}", content)
         open(page["output"], "w+").write(finished_page)
 
+def string_replacer():
+    content = content_extractor()
+    print(content)
+
+
+
+
 content_extractor()
 
 
