@@ -39,7 +39,7 @@ def build_page(content_page,output,title):
     template_replace = replacer(template,"{{title}}",title)
     content_middle = open(content_page).read()
     finished_page = replacer(template_replace,"{{placeholder}}",content_middle)
-    open(output, "w+").write(finished_page) 
+    open(output, "w+").write(finished_page+"alpha") 
 
 
 def replacer(original_content, placeholder, replace_content):
