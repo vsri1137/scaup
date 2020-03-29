@@ -1,6 +1,6 @@
 def main ():
-    for page in pages:
-        apply_template(page["filename"],page["output"])
+    for page in pages: #loop function
+        build_page(page["filename"],page["output"],page["title"]) 
 
 
 pages = [  # list with metadata on pages
@@ -26,15 +26,25 @@ pages = [  # list with metadata on pages
     },
 ]
    
+#this shit sorta works
+# def build_page(content_page,output,title):      # interate through pages list and extract content
+#     template = open("templates/base.html").read() # reads in template with top/bottom html
+#     content_middle = open(content_page).read()
+#     finished_page = replacer(content_page,placeholder="{{placeholder}}",replace_content="content_middle")
+#     new_title = replacer(finished_page,placeholder="{{title}}",replace_content=title)
+#     open(output, "w+").write(finished_page) 
 
-def apply_template(content,output):  # interate through pages list and extract content
-    template = open("templates/base.html").read() # reads in template with top/bottom html
-    content_middle = open(content).read() 
-    finished_page = replacer(template,placeholder="{{placeholder}}",replace_content=content_middle)
-    open(output, "w+").write(finished_page)
+def build_page(content_page,output,title):     
+    template = open("templates/base.html").read() 
+    template_replace = replacer(template,"{{title}}",title)
+    content_middle = open(content_page).read()
+    finished_page = replacer(template_replace,"{{placeholder}}",content_middle)
+    open(output, "w+").write(finished_page) 
 
-def replacer(original,placeholder,replace_content):
-    finished_page = original.replace(placeholder,replace_content)
-    return finished_page
+
+def replacer(original_content, placeholder, replace_content):
+    finished = original_content.replace(placeholder,replace_content)
+    return finished
+
 
 main()
