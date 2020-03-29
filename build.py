@@ -1,6 +1,7 @@
+def main ():
+    template = open("templates/base.html").read() # reads in template with top/bottom html
+    apply_template("content/index.html","docs/index.html",template)
 
-# reads in template with top/bottom html
-template = open("templates/base.html").read()
 
 pages = [  # list with metadata on pages
     {
@@ -24,15 +25,11 @@ pages = [  # list with metadata on pages
         "title": "Projects",
     },
 ]
+   
 
-def content_extractor():  # this function iterates through pages list and extracts content
+def apply_template(content,output, template):  # interate through pages list and extract content
+    content = open(content).read() 
+    finished_page = template.replace("{{placeholder}}",content)
+    open(output, "w+").write(finished_page + "trash")
 
-    for page in pages:  # iterates through each item in list
-        # pull page location from dictionary
-        content = open(page["filename"]).read() 
-        finished_page = template.replace("{{placeholder}}", content)
-        open(page["output"], "w+").write(finished_page)
-
-content_extractor()
-
-
+main()
