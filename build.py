@@ -16,8 +16,8 @@ pages = [  # list with metadata on pages
     },
     {
         "filename": "content/blog.html",
-        "output": "docs/log.html",
-        "title": "Log",
+        "output": "docs/blog.html",
+        "title": "Blog",
     },
     {
         "filename": "content/projects.html",
